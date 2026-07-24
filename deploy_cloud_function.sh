@@ -6,7 +6,7 @@
 set -e
 
 # Configuration
-PROJECT_ID="530982326426"
+PROJECT_ID="centering-oxide-457800-p2"
 FUNCTION_NAME="petpooja-daily-report"
 REGION="us-central1"
 RUNTIME="python311"
