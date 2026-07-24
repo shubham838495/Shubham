@@ -61,7 +61,7 @@ Copy the contents from this repository's files into your Apps Script editor:
 2. Scroll to **Script Properties**
 3. Add these properties:
    - **Key**: `PETPOOJA_EMAIL` | **Value**: `jain.shubhamjain98@gmail.com`
-   - **Key**: `PETPOOJA_PASSWORD` | **Value**: `Shubham@8384954929`
+   - **Key**: `PETPOOJA_PASSWORD` | **Value**: `<your PetPooja password>`
    - **Key**: `SHEET_ID` | **Value**: [Paste the SHEET_ID you copied earlier]
    - **Key**: `NOTIFICATION_EMAIL` | **Value**: `jain.shubhamjain98@gmail.com`
 

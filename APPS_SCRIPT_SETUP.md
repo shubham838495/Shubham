@@ -96,7 +96,7 @@ This is important for security! Your email/password will be encrypted.
 
 ### Property 2:
 - **Key:** `PETPOOJA_PASSWORD`
-- **Value:** `Shubham@8384954929`
+- **Value:** `<your PetPooja password>`
 - Click **Add property**
 
 ### Property 3:
