@@ -47,7 +47,7 @@ function onOpen() {
     .addSeparator()
     .addItem('Install daily auto-update', 'installDailyTrigger')
     .addItem('Remove daily auto-update', 'removeDailyTrigger')
-    .addToUI();
+    .addToUi();
 }
 
 // ---- Main -----------------------------------------------------------------
