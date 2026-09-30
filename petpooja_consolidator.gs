@@ -17,7 +17,8 @@
 
 // ---- Config ---------------------------------------------------------------
 
-var MAX_PER_RUN = 40;
+var MAX_PER_RUN = 500;              // effectively "all", bounded by the time guard
+var DEADLINE_MS = 5 * 60 * 1000;    // stop before Apps Script's 6-min limit
 var DONE_LABEL = 'PP_Ingested';
 var OUTLET = 'NBC - Vijay Nagar, Indore';
 var META = ['Report Date', 'Outlet', 'Source File'];
@@ -80,15 +81,16 @@ function resetAndReimport() {
 function ingestBatch() {
   var lbl = GmailApp.getUserLabelByName(DONE_LABEL) || GmailApp.createLabel(DONE_LABEL);
   var ss = SpreadsheetApp.getActive();
-  var processed = 0, remaining = 0;
+  var processed = 0, remaining = 0, t0 = Date.now();
 
   for (var r = 0; r < REPORTS.length; r++) {
     var rep = REPORTS[r];
-    var threads = GmailApp.search(rep.query + ' -label:' + DONE_LABEL, 0, 80);
+    var threads = GmailApp.search(rep.query + ' -label:' + DONE_LABEL, 0, 200);
     remaining += threads.length;
     var sheet = tab(ss, rep.tab);
 
-    for (var t = 0; t < threads.length && processed < MAX_PER_RUN; t++) {
+    for (var t = 0; t < threads.length && processed < MAX_PER_RUN &&
+                    (Date.now() - t0) < DEADLINE_MS; t++) {
       var msgs = threads[t].getMessages(), ok = false;
       for (var m = 0; m < msgs.length; m++) {
         var msg = msgs[m], date = parseReportDate(msg), atts = msg.getAttachments();
