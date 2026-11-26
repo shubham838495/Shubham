@@ -91,25 +91,29 @@ This is important for security! Your email/password will be encrypted.
 
 ### Property 1:
 - **Key:** `PETPOOJA_EMAIL`
-- **Value:** `jain.shubhamjain98@gmail.com`
+- **Value:** your PetPooja login email — type it in directly
 - Click **Add property**
 
 ### Property 2:
 - **Key:** `PETPOOJA_PASSWORD`
-- **Value:** `Shubham@8384954929`
+- **Value:** your PetPooja password — type it in directly
 - Click **Add property**
 
 ### Property 3:
 - **Key:** `SHEET_ID`
-- **Value:** `11_U8uBU2A6nbfCeBLsZaxi_AbLWA1TXkWVTMVWLzbnI`
+- **Value:** the SHEET_ID from your sheet's URL (the long string between `/d/` and `/edit`)
 - Click **Add property**
 
 ### Property 4:
 - **Key:** `NOTIFICATION_EMAIL`
-- **Value:** `jain.shubhamjain98@gmail.com`
+- **Value:** the email address that should receive failure alerts
 - Click **Add property**
 
-✅ Your credentials are now securely stored and encrypted!
+✅ Your credentials are now stored in Script Properties, encrypted at rest by Google.
+
+⚠️ **Never write a real password into a file in this repository.** Anything committed
+stays in the git history even after it is deleted, and anyone who can read the
+repository can read it. Script Properties is the only place these values belong.
 
 ---
 
