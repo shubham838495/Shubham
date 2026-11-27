@@ -1,0 +1,23 @@
+name = "opsmechanic-api"
+main = "index.js"
+compatibility_date = "2026-01-01"
+
+# Serves the form endpoint from the same domain as the site, so there is no CORS.
+routes = [
+  { pattern = "opsmechanic.com/api/*", zone_name = "opsmechanic.com" }
+]
+
+[vars]
+TO_EMAIL   = "shubham@opsmechanic.com"
+# Until your domain is verified in Resend, use: onboarding@resend.dev
+FROM_EMAIL = "onboarding@resend.dev"
+
+# Create with:  npx wrangler d1 create opsmechanic
+# then paste the database_id printed by that command.
+[[d1_databases]]
+binding       = "DB"
+database_name = "opsmechanic"
+database_id   = "PASTE_DATABASE_ID_HERE"
+
+# RESEND_API_KEY is a secret, never put it here:
+#   npx wrangler secret put RESEND_API_KEY
