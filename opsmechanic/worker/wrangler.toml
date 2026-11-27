@@ -8,7 +8,7 @@ routes = [
 ]
 
 [vars]
-TO_EMAIL   = "hello@opsmechanic.com"
+TO_EMAIL   = "shubham@opsmechanic.com"
 # Until your domain is verified in Resend, use: onboarding@resend.dev
 FROM_EMAIL = "onboarding@resend.dev"
 
