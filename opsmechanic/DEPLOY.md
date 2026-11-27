@@ -77,23 +77,25 @@ Without this, enquiries are stored but you must check the database. To get email
 
 ---
 
-## Before you go live
+## Still to add
 
-Nine placeholders are marked in **orange with a dashed underline**. Find them with:
+The site is complete and deployable. Three things were left out rather than
+shipped as placeholders, because an empty bracket on a live page looks worse
+than an absent row:
 
-```bash
-grep -n 'class="ph"' index.html
-```
-
-| Where | Replace |
+| Missing | Where |
 |---|---|
-| Hero spec plate | `[ CITY ]` |
-| Credentials | `[ COUNT ]`, `[ REGION ]`, `[ N ]` |
-| Contact | `[ NUMBER ]`, `[ HANDLE ]` |
-| Privacy | `[ DATE ]`, `[ LEGAL NAME ]`, `[ ADDRESS ]` |
+| Phone / WhatsApp | Contact section — row removed |
+| LinkedIn | Contact section — row removed |
+| Outlets overseen, region, years in F&B | Credentials panel — rows removed |
 
-Also: have a CA or lawyer read the privacy policy before you accept real client data.
-It is written for Indian law and references the DPDP Act 2023, but it is a template.
+Add them back once the real values are known.
+
+**Privacy policy:** it lists the business as *Shubham Jain, Jaipur, Rajasthan,
+India* — deliberately the city, not a residential address. Have a CA or lawyer
+read the policy before accepting real client data. It is written for Indian law
+and references the DPDP Act 2023, but it is a template, and the client
+confidentiality clause matters most.
 
 ## Checks after deploying
 
