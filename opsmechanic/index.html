@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Ops Mechanic — Operations &amp; Profitability Consulting</title>
+<meta name="description" content="I find where your outlets leak money — inventory variance, unreconciled settlements, food cost drift — fix it, and leave behind a system your team can run.">
+<link rel="canonical" href="https://opsmechanic.com/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#F1F2EF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1214" media="(prefers-color-scheme: dark)">
+
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ops Mechanic">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://opsmechanic.com/">
+<meta property="og:title" content="Ops Mechanic — Operations &amp; Profitability Consulting">
+<meta property="og:description" content="Inventory variance, unreconciled settlements, reporting nobody trusts. I diagnose the gaps draining your margin and leave behind a system your team can run.">
+<meta property="og:image" content="https://opsmechanic.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Ops Mechanic",
+  "description": "Operations and profitability consulting for cafés, QSR and retail in India.",
+  "url": "https://opsmechanic.com/",
+  "email": "hello@opsmechanic.com",
+  "areaServed": "IN",
+  "founder": { "@type": "Person", "name": "Shubham Jain" },
+  "knowsAbout": [
+    "Inventory management",
+    "Payment reconciliation",
+    "Sales reporting and MIS",
+    "Food cost control",
+    "Operational audits",
+    "Franchise expansion"
+  ]
+}
+</script>
+
+<style>
+/* Layout concept: a service manual — hairline-ruled bands, mono spec labels, left-aligned, data in tabular figures. */
+:root{
+  --bg:#F1F2EF; --surface:#FFFFFF; --surface-2:#E7E9E4;
+  --ink:#14181B; --muted:#59636B; --line:#D2D6D0; --line-strong:#B4BAB3;
+  --accent:#C2410C; --accent-ink:#FFFFFF; --good:#1F6F43;
+  --font-display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --font-body:'IBM Plex Sans','Segoe UI',Roboto,Arial,sans-serif;
+  --font-mono:'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace;
+  --maxw:1120px;
+  --step--1:clamp(.76rem,.74rem + .12vw,.82rem);
+  --step-0:clamp(.98rem,.95rem + .18vw,1.06rem);
+  --step-1:clamp(1.12rem,1.05rem + .35vw,1.3rem);
+  --step-2:clamp(1.4rem,1.25rem + .7vw,1.85rem);
+  --step-3:clamp(1.85rem,1.5rem + 1.6vw,2.9rem);
+  --step-4:clamp(2.4rem,1.7rem + 3.2vw,4.4rem);
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1214; --surface:#171B1E; --surface-2:#1E2327;
+    --ink:#E9EBE7; --muted:#9BA4A9; --line:#272D31; --line-strong:#3A4248;
+    --accent:#FF7039; --accent-ink:#1A0D06; --good:#4FBF83;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1214; --surface:#171B1E; --surface-2:#1E2327;
+  --ink:#E9EBE7; --muted:#9BA4A9; --line:#272D31; --line-strong:#3A4248;
+  --accent:#FF7039; --accent-ink:#1A0D06; --good:#4FBF83;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:var(--step-0);line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:60}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.08;text-wrap:balance;margin:0;letter-spacing:-.02em}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%}
+.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--accent-ink);padding:.6rem 1rem;z-index:100}
+.skip:focus{left:.5rem;top:.5rem}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;width:100%;
+  padding-left:max(20px,env(safe-area-inset-left,0px));
+  padding-right:max(20px,env(safe-area-inset-right,0px));}
+.band{border-top:1px solid var(--line)}
+.band > .wrap{padding-block:clamp(3rem,6vw,5.5rem)}
+.eyebrow{font-family:var(--font-mono);font-size:var(--step--1);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.7rem;margin-bottom:1.5rem}
+.eyebrow::after{content:"";height:1px;flex:1;background:var(--line);min-width:1rem}
+.h-lead{font-size:var(--step-3);max-width:26ch;margin-bottom:1rem}
+.p-lead{color:var(--muted);max-width:60ch;margin-bottom:2.5rem}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--surface);border-bottom:1px solid var(--line)}
+.nav > .wrap{display:flex;align-items:center;gap:1.25rem;padding-block:.85rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:var(--font-display);font-weight:800;font-size:1.02rem;letter-spacing:-.025em;text-decoration:none;margin-right:auto}
+.brand svg{display:block;flex:none}
+.navlinks{display:flex;gap:1.15rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:var(--step--1);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.navlinks a{color:var(--muted);text-decoration:none;padding:.15rem 0;border-bottom:1px solid transparent}
+.navlinks a:hover{color:var(--ink);border-bottom-color:var(--accent)}
+
+.hero > .wrap{padding-block:clamp(3.5rem,8vw,7rem) clamp(3rem,6vw,5rem)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:end}
+.tagline{font-family:var(--font-mono);font-size:var(--step--1);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem}
+h1{font-size:var(--step-4);font-weight:800}
+h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{margin-top:1.5rem;font-size:var(--step-1);color:var(--muted);max-width:34ch;line-height:1.5}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.25rem}
+.btn{font-family:var(--font-mono);font-size:var(--step--1);font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.85rem 1.4rem;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);text-decoration:none;cursor:pointer;display:inline-block}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.55;cursor:default;filter:none}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.btn-ghost:hover{border-color:var(--ink);filter:none}
+
+.plate{border:1px solid var(--line-strong);background:var(--surface)}
+.plate-head{font-family:var(--font-mono);font-size:var(--step--1);font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1rem;border-bottom:1px solid var(--line-strong);color:var(--muted);display:flex;justify-content:space-between;gap:1rem}
+.plate-row{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 1rem;border-bottom:1px solid var(--line);font-size:var(--step--1)}
+.plate-row:last-child{border-bottom:0}
+.plate-row dt{color:var(--muted);font-family:var(--font-mono);letter-spacing:.03em}
+.plate-row dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+
+.offer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.offer{background:var(--surface);padding:clamp(1.4rem,2.5vw,2rem);min-width:0;display:flex;flex-direction:column;gap:.85rem}
+.offer-no{font-family:var(--font-mono);font-size:var(--step--1);font-weight:600;color:var(--accent);letter-spacing:.1em}
+.offer h3{font-size:var(--step-1);font-weight:700}
+.offer p{color:var(--muted);font-size:var(--step--1);line-height:1.65}
+.offer ul{margin:.2rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.45rem;font-size:var(--step--1)}
+.offer li{padding-left:1.1rem;position:relative}
+.offer li::before{content:"";position:absolute;left:0;top:.62em;width:.45rem;height:1px;background:var(--accent)}
+
+.journey{margin-top:2.5rem;border:1px solid var(--line-strong);background:var(--surface);padding:clamp(1.2rem,3vw,2rem);overflow-x:auto}
+.journey-title{font-family:var(--font-mono);font-size:var(--step--1);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.4rem}
+.chain{display:flex;align-items:stretch;min-width:620px}
+.node{flex:1;min-width:0;border:1px solid var(--line);padding:.8rem .75rem;text-align:center;background:var(--bg)}
+.node b{display:block;font-family:var(--font-display);font-size:var(--step--1);font-weight:700;letter-spacing:-.01em}
+.node span{display:block;font-family:var(--font-mono);font-size:.68rem;color:var(--muted);margin-top:.3rem;letter-spacing:.04em}
+.arrow{display:flex;align-items:center;justify-content:center;width:26px;flex:none;color:var(--accent);font-family:var(--font-mono);font-weight:600}
+.leak{margin-top:1.1rem;font-size:var(--step--1);color:var(--muted);display:flex;gap:.6rem;align-items:flex-start}
+.leak b{color:var(--accent);font-family:var(--font-mono);letter-spacing:.06em;flex:none}
+
+.for-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:1.5rem}
+.for-item{min-width:0;border-top:2px solid var(--accent);padding-top:1rem}
+.for-item h4{font-size:var(--step-1);font-weight:700;margin-bottom:.5rem}
+.for-item p{color:var(--muted);font-size:var(--step--1)}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.step{min-width:0;padding:1.5rem clamp(1rem,2vw,1.75rem);border-left:1px solid var(--line)}
+.step:first-child{border-left:0;padding-left:0}
+.step-no{font-family:var(--font-mono);font-size:2rem;font-weight:600;color:var(--line-strong);line-height:1;margin-bottom:.9rem;font-variant-numeric:tabular-nums}
+.step h4{font-size:var(--step-1);font-weight:700;margin-bottom:.55rem}
+.step p{color:var(--muted);font-size:var(--step--1)}
+.step-out{margin-top:.9rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--good)}
+
+.about-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem)}
+.about-body{min-width:0;display:flex;flex-direction:column;gap:1.1rem;max-width:62ch}
+.about-body p{color:var(--muted)}
+.about-body strong{color:var(--ink);font-weight:600}
+.cred{border:1px solid var(--line-strong);background:var(--surface);align-self:start;min-width:0}
+.cred-head{font-family:var(--font-mono);font-size:var(--step--1);font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1rem;border-bottom:1px solid var(--line-strong);color:var(--muted)}
+.cred ul{margin:0;padding:0;list-style:none}
+.cred li{padding:.85rem 1rem;border-bottom:1px solid var(--line);font-size:var(--step--1)}
+.cred li:last-child{border-bottom:0}
+.cred li b{display:block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem;font-weight:600}
+.ph{font-family:var(--font-mono);font-weight:600;color:var(--accent);border-bottom:1px dashed var(--accent)}
+
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,4rem)}
+.contact-col{min-width:0;display:flex;flex-direction:column;gap:1.5rem}
+.detail{border-top:1px solid var(--line);padding-top:1rem}
+.detail b{display:block;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;font-weight:600}
+.copyrow{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.copyrow code{font-family:var(--font-mono);font-size:var(--step-0);background:var(--surface-2);padding:.35rem .6rem;border:1px solid var(--line);user-select:all;word-break:break-all}
+.copybtn{font-family:var(--font-mono);font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--line-strong);color:var(--muted);padding:.4rem .6rem;cursor:pointer;flex:none}
+.copybtn:hover{color:var(--ink);border-color:var(--ink)}
+
+form{display:flex;flex-direction:column;gap:1rem;border:1px solid var(--line-strong);background:var(--surface);padding:clamp(1.25rem,3vw,1.9rem)}
+.field{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.field label{font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{font-family:var(--font-body);font-size:var(--step-0);color:var(--ink);background:var(--bg);border:1px solid var(--line-strong);padding:.7rem .8rem;width:100%;border-radius:0}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:1rem}
+.form-note{font-size:.72rem;color:var(--muted);font-family:var(--font-mono);line-height:1.5}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.result{border:1px solid var(--good);background:var(--surface-2);padding:1rem;display:flex;flex-direction:column;gap:.75rem}
+.result.err{border-color:var(--accent)}
+.result p{font-size:var(--step--1)}
+.result pre{margin:0;font-family:var(--font-mono);font-size:.75rem;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:var(--bg);border:1px solid var(--line);padding:.8rem;max-height:220px;overflow:auto}
+
+.legal{max-width:70ch;display:flex;flex-direction:column;gap:1.5rem}
+.legal h3{font-size:var(--step-1);font-weight:700;margin-bottom:.5rem}
+.legal p,.legal li{color:var(--muted);font-size:var(--step--1);line-height:1.7}
+.legal ul{margin:.5rem 0 0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.4rem}
+.legal .updated{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);background:var(--surface)}
+footer > .wrap{padding-block:2.25rem;display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.foot-links{display:flex;gap:1.1rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
+.foot-links a{color:var(--muted);text-decoration:none}
+.foot-links a:hover{color:var(--ink)}
+.foot-note{font-size:.72rem;color:var(--muted);font-family:var(--font-mono)}
+
+@media (max-width:860px){
+  .hero-grid,.about-grid,.contact-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-grid{align-items:start}
+  .step{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-right:0}
+  .step:first-child{border-top:0;padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="9.2" stroke="var(--accent)" stroke-width="1.6"/>
+        <circle cx="12" cy="12" r="3.1" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M12 1.4v4.2M12 18.4v4.2M1.4 12h4.2M18.4 12h4.2" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+      Ops Mechanic
+    </a>
+    <div class="navlinks">
+      <a href="#offerings">Offerings</a>
+      <a href="#approach">Approach</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="tagline">Operations &amp; Profitability Consulting</p>
+        <h1>Your outlets are leaking money. <em>I find where.</em></h1>
+        <p class="hero-sub">Inventory variance, unreconciled settlements, and reporting nobody trusts. I diagnose the operational gaps draining your margin, fix them, and leave behind a system your team can run without me.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#contact">Book a diagnostic</a>
+          <a class="btn btn-ghost" href="#offerings">See what I fix</a>
+        </div>
+      </div>
+      <dl class="plate">
+        <div class="plate-head"><span>Practice</span><span>Spec</span></div>
+        <div class="plate-row"><dt>Sectors</dt><dd>Café · QSR · Retail</dd></div>
+        <div class="plate-row"><dt>Scope</dt><dd>Single outlet to multi-city</dd></div>
+        <div class="plate-row"><dt>Engagements</dt><dd>Diagnostic · Project · Retainer</dd></div>
+        <div class="plate-row"><dt>Based in</dt><dd><span class="ph">[ CITY ]</span>, India</dd></div>
+        <div class="plate-row"><dt>Typical first result</dt><dd>14–30 days</dd></div>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<section class="band" id="offerings">
+  <div class="wrap">
+    <p class="eyebrow">Offerings</p>
+    <h2 class="h-lead">Six places margin disappears, and what I do about each.</h2>
+    <p class="p-lead">Every engagement starts with the numbers you already have — POS exports, purchase registers, settlement statements — and ends with a process your managers actually follow.</p>
+
+    <div class="offer-grid">
+      <article class="offer">
+        <span class="offer-no">01 / INVENTORY</span>
+        <h3>Inventory Management</h3>
+        <p>Stock that walks out the back door without appearing on any report. I close the gap between what your POS depleted and what your store actually holds.</p>
+        <ul>
+          <li>Theoretical vs. actual usage variance</li>
+          <li>Par levels and reorder points per SKU</li>
+          <li>Wastage, spoilage and yield tracking</li>
+          <li>Closing stock audit discipline</li>
+          <li>Recipe costing and portion control</li>
+        </ul>
+      </article>
+
+      <article class="offer">
+        <span class="offer-no">02 / MONEY TRAIL</span>
+        <h3>Payment Reconciliation</h3>
+        <p>The full journey from a customer's payment to money landing in your bank. Most outlets never check the middle of that chain — and that is exactly where it goes missing.</p>
+        <ul>
+          <li>POS sales vs. aggregator payouts</li>
+          <li>Swiggy &amp; Zomato commission audits</li>
+          <li>UPI, card and wallet settlement matching</li>
+          <li>MDR, TDR and TCS deduction checks</li>
+          <li>Unsettled batches and chargeback recovery</li>
+        </ul>
+      </article>
+
+      <article class="offer">
+        <span class="offer-no">03 / REPORTING</span>
+        <h3>Sales Reporting &amp; MIS</h3>
+        <p>One daily report your whole team reads the same way. No two managers quoting different numbers for the same day.</p>
+        <ul>
+          <li>Daily sales and cash MIS</li>
+          <li>Outlet-wise and day-part revenue mix</li>
+          <li>ATV, covers and same-store growth</li>
+          <li>Automated dashboards from your POS</li>
+          <li>Weekly and monthly business reviews</li>
+        </ul>
+      </article>
+
+      <article class="offer">
+        <span class="offer-no">04 / MARGIN</span>
+        <h3>Food Cost &amp; Margin</h3>
+        <p>Food cost is not one number — it is a dozen decisions compounding. I unpick which ones are costing you points of gross profit.</p>
+        <ul>
+          <li>Theoretical vs. actual food cost</li>
+          <li>Yield testing for semi-finished items</li>
+          <li>Menu engineering and item-level GP</li>
+          <li>Vendor rate benchmarking</li>
+          <li>Outlet-level P&amp;L reconstruction</li>
+        </ul>
+      </article>
+
+      <article class="offer">
+        <span class="offer-no">05 / CONTROLS</span>
+        <h3>Audits &amp; SOPs</h3>
+        <p>Written standards, and an audit that actually catches drift. Processes that survive staff turnover instead of leaving with your best manager.</p>
+        <ul>
+          <li>Operational audit checklists</li>
+          <li>Cash handling and shift controls</li>
+          <li>SOP documentation per station</li>
+          <li>Opening and closing discipline</li>
+          <li>Staff training and accountability</li>
+        </ul>
+      </article>
+
+      <article class="offer">
+        <span class="offer-no">06 / GROWTH</span>
+        <h3>Expansion Support</h3>
+        <p>Before you sign the next lease: whether the unit economics hold, and whether your current operation can absorb another site.</p>
+        <ul>
+          <li>Franchise due diligence before you buy</li>
+          <li>Break-even and payback modelling</li>
+          <li>Site and unit-economics review</li>
+          <li>New outlet opening checklists</li>
+          <li>Area manager structure and span</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="journey">
+      <p class="journey-title">Reconciliation scope — the money journey</p>
+      <div class="chain">
+        <div class="node"><b>Customer</b><span>UPI / card / cash</span></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node"><b>POS</b><span>order recorded</span></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node"><b>Aggregator</b><span>gateway / platform</span></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node"><b>Nodal account</b><span>commission, MDR, TCS</span></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node"><b>Settlement</b><span>payout cycle</span></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node"><b>Your bank</b><span>credit received</span></div>
+      </div>
+      <p class="leak"><b>Where it leaks</b> <span>Commission charged above contract, orders marked delivered but never settled, refunds debited twice, payouts netted against disputes you were never told about. Checked line by line against your own POS data.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Who this is for</p>
+    <div class="for-grid">
+      <div class="for-item">
+        <h4>Multi-outlet owners</h4>
+        <p>Three or more sites where performance varies and you cannot tell whether it is the location, the manager, or the numbers.</p>
+      </div>
+      <div class="for-item">
+        <h4>Franchise partners</h4>
+        <p>Running someone else's brand on your own capital, and needing your unit to actually return what the model promised.</p>
+      </div>
+      <div class="for-item">
+        <h4>Growing brands</h4>
+        <p>Scaling past the point where one founder can hold operations in their head, and needing systems before the next opening.</p>
+      </div>
+      <div class="for-item">
+        <h4>Single-site operators</h4>
+        <p>Good revenue, thin profit, and no clear view of where the gap between the two is sitting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="approach">
+  <div class="wrap">
+    <p class="eyebrow">Approach</p>
+    <h2 class="h-lead" style="max-width:24ch;margin-bottom:2.5rem">Diagnose, fix, systemise, hand over.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-no">01</div>
+        <h4>Diagnose</h4>
+        <p>I take your last three months of POS exports, purchase registers and settlement statements, and reconcile them against each other. No site visit needed to start.</p>
+        <p class="step-out">Output: leakage report</p>
+      </div>
+      <div class="step">
+        <div class="step-no">02</div>
+        <h4>Fix</h4>
+        <p>We work the largest gaps first — the two or three items carrying most of the loss. Recovery of past money where it is recoverable, and controls so it stops.</p>
+        <p class="step-out">Output: recovered margin</p>
+      </div>
+      <div class="step">
+        <div class="step-no">03</div>
+        <h4>Systemise</h4>
+        <p>The fix becomes a routine: a written SOP, a daily report, an audit cadence. Built on tools you already pay for, not new software you must learn.</p>
+        <p class="step-out">Output: SOPs + dashboards</p>
+      </div>
+      <div class="step">
+        <div class="step-no">04</div>
+        <h4>Hand over</h4>
+        <p>Your managers run it, not me. I train the team, leave the documentation, and stay available for review cycles if you want them.</p>
+        <p class="step-out">Output: your team owns it</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="about">
+  <div class="wrap">
+    <p class="eyebrow">About</p>
+    <div class="about-grid">
+      <div class="about-body">
+        <h2 class="h-lead" style="max-width:22ch">I trained as an engineer. Now I fix businesses instead of engines.</h2>
+        <p>I'm <strong>Shubham Jain</strong>. I work as a <strong>Regional Manager at Nothing Before Coffee</strong>, where I'm responsible for sales performance, profitability and operational standards across multiple cafés and the Area Managers who run them.</p>
+        <p>I also <strong>own and operate an NBC franchise café</strong> myself. That matters more than it sounds. I've sat on both sides of the table — setting standards from the corporate side, and absorbing the cost of them as the owner. When I recommend a change, I've already paid for it personally.</p>
+        <p>My degree is in <strong>Automobile Engineering</strong> from SRM University, and my research was published in an international journal and later cited in a US patent. I moved into operations during COVID and found the work I actually wanted: diagnosing why a system underperforms, then rebuilding it so it doesn't.</p>
+        <p>What I care about is <strong>building systems rather than repeating tasks</strong>. If a problem recurs monthly, it isn't a problem — it's a missing process. That's the lens I bring to inventory, reconciliation and reporting, and it's why engagements end with your team running the fix instead of calling me back.</p>
+      </div>
+      <div class="cred">
+        <p class="cred-head">Credentials</p>
+        <ul>
+          <li><b>Current role</b>Regional Manager, Nothing Before Coffee</li>
+          <li><b>Also</b>Owner-operator, NBC franchise café</li>
+          <li><b>Outlets overseen</b><span class="ph">[ COUNT ]</span> cafés across <span class="ph">[ REGION ]</span></li>
+          <li><b>Experience</b><span class="ph">[ N ]</span> years in F&amp;B operations</li>
+          <li><b>Education</b>B.Tech, Automobile Engineering — SRM University</li>
+          <li><b>Research</b>Published internationally; cited in a US patent</li>
+          <li><b>Specialisms</b>Food cost, inventory control, reconciliation, MIS, audits, expansion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <div class="contact-grid">
+      <div class="contact-col">
+        <h2 class="h-lead" style="max-width:20ch">Start with a diagnostic.</h2>
+        <p style="color:var(--muted);max-width:44ch">Send me three months of POS exports and settlement statements. I'll come back with where your margin is going — before you commit to anything.</p>
+        <div class="detail">
+          <b>Email</b>
+          <div class="copyrow">
+            <code id="email">hello@opsmechanic.com</code>
+            <button class="copybtn" type="button" data-copy="email">Copy</button>
+          </div>
+        </div>
+        <div class="detail">
+          <b>Phone / WhatsApp</b>
+          <div class="copyrow">
+            <code id="phone">+91 <span class="ph">[ NUMBER ]</span></code>
+            <button class="copybtn" type="button" data-copy="phone">Copy</button>
+          </div>
+        </div>
+        <div class="detail">
+          <b>LinkedIn</b>
+          <div class="copyrow">
+            <code id="li">linkedin.com/in/<span class="ph">[ HANDLE ]</span></code>
+            <button class="copybtn" type="button" data-copy="li">Copy</button>
+          </div>
+        </div>
+        <div class="detail">
+          <b>Response time</b>
+          <p style="font-size:var(--step--1);color:var(--muted)">Within one working day.</p>
+        </div>
+      </div>
+
+      <form id="enquiry" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-business">Business name</label>
+            <input id="f-business" name="business" type="text" autocomplete="organization">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="f-outlets">Number of outlets</label>
+            <select id="f-outlets" name="outlets">
+              <option>1</option>
+              <option>2–5</option>
+              <option>6–15</option>
+              <option>16+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-need">What you need</label>
+            <select id="f-need" name="need">
+              <option>Inventory management</option>
+              <option>Payment reconciliation</option>
+              <option>Sales reporting / MIS</option>
+              <option>Food cost &amp; margin</option>
+              <option>Audits &amp; SOPs</option>
+              <option>Expansion support</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-msg">What's going wrong</label>
+          <textarea id="f-msg" name="message" placeholder="Revenue is fine but profit isn't. Stock counts never match. Aggregator payouts look short."></textarea>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="f-company2">Leave this empty</label>
+          <input id="f-company2" name="company2" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <button class="btn" type="submit" id="submit-btn">Send enquiry</button>
+        <p class="form-note">Your details are used only to reply to this enquiry. See the privacy policy below.</p>
+        <div class="result" id="result" hidden>
+          <p id="result-msg"></p>
+          <pre id="result-text" hidden></pre>
+          <button class="copybtn" type="button" id="copy-msg" hidden style="align-self:flex-start">Copy message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="privacy">
+  <div class="wrap">
+    <p class="eyebrow">Privacy policy</p>
+    <div class="legal">
+      <p class="updated">Last updated: <span class="ph">[ DATE ]</span></p>
+      <p>This policy explains how <strong>Ops Mechanic</strong> (operated by <span class="ph">[ LEGAL NAME ]</span>, <span class="ph">[ ADDRESS ]</span>, India) collects and handles personal data when you use this website or engage us for consulting work.</p>
+
+      <div>
+        <h3>What we collect</h3>
+        <ul>
+          <li><strong>Information you give us:</strong> name, business name, email address, phone number and the details of your enquiry, submitted through the contact form or by email.</li>
+          <li><strong>Client business data:</strong> during an engagement we may receive POS exports, purchase registers, settlement statements, payroll summaries and similar operational records.</li>
+          <li><strong>Technical data:</strong> basic, aggregated access logs from our hosting provider, such as approximate region, browser type and pages visited. We do not use advertising or cross-site tracking cookies.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Why we use it</h3>
+        <ul>
+          <li>To respond to your enquiry and discuss whether we are a fit.</li>
+          <li>To deliver the consulting work you have engaged us for.</li>
+          <li>To keep records required for accounting and tax compliance.</li>
+        </ul>
+        <p style="margin-top:.6rem">We do not sell your data, and we do not use it to train any third-party model.</p>
+      </div>
+
+      <div>
+        <h3>Client confidentiality</h3>
+        <p>Business data shared with us during an engagement is treated as confidential. It is used only to perform the agreed work, is not shared with other clients, and is not used in case studies or marketing without your prior written consent. Where a formal non-disclosure agreement is in place, that agreement takes precedence over this policy.</p>
+      </div>
+
+      <div>
+        <h3>Who we share it with</h3>
+        <p>We share personal data only with service providers necessary to operate, and only to the extent required: our website host and email provider, and where applicable an accountant or tax advisor. We may also disclose data where required by Indian law.</p>
+      </div>
+
+      <div>
+        <h3>How long we keep it</h3>
+        <p>Enquiries that do not become engagements are deleted within <span class="ph">[ 12 ]</span> months. Client records are retained for the duration of the engagement and for as long afterwards as Indian accounting and tax law requires, then deleted or anonymised.</p>
+      </div>
+
+      <div>
+        <h3>Your rights</h3>
+        <p>Under the Digital Personal Data Protection Act, 2023, you may request access to the personal data we hold about you, ask for it to be corrected or erased, withdraw consent, or nominate someone to exercise these rights on your behalf. To make a request, email <strong>hello@opsmechanic.com</strong>. We will respond within <span class="ph">[ 30 ]</span> days.</p>
+      </div>
+
+      <div>
+        <h3>Security</h3>
+        <p>We use reputable providers, encrypted connections and access controls appropriate to the size of this practice. No system is completely secure, so please do not send card numbers, passwords or banking credentials by email.</p>
+      </div>
+
+      <div>
+        <h3>Changes and contact</h3>
+        <p>We will update this page if this policy changes, and revise the date above. For any question about privacy or data handling, contact <strong>hello@opsmechanic.com</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p style="font-family:var(--font-display);font-weight:800;letter-spacing:-.025em">Ops Mechanic</p>
+      <p class="foot-note">Operations &amp; profitability consulting · India</p>
+    </div>
+    <div class="foot-links">
+      <a href="#offerings">Offerings</a>
+      <a href="#approach">Approach</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#privacy">Privacy</a>
+    </div>
+    <p class="foot-note">© <span id="yr">2026</span> <span class="ph">[ LEGAL NAME ]</span>. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var API = '/api/enquiry';   // served by the Worker on the same domain
+
+  var y = document.getElementById('yr');
+  if (y) y.textContent = String(new Date().getFullYear());
+
+  function flash(btn, msg){
+    var old = btn.textContent;
+    btn.textContent = msg;
+    setTimeout(function(){ btn.textContent = old; }, 1600);
+  }
+
+  function copyText(text, btn, srcId){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){
+        flash(btn, 'Copied');
+      }).catch(function(){ selectFallback(btn, srcId); });
+      return;
+    }
+    selectFallback(btn, srcId);
+  }
+
+  function selectFallback(btn, srcId){
+    var el = srcId ? document.getElementById(srcId) : null;
+    if (el && window.getSelection) {
+      var r = document.createRange();
+      r.selectNodeContents(el);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      flash(btn, 'Selected');
+    } else {
+      flash(btn, 'Select & copy');
+    }
+  }
+
+  var btns = document.querySelectorAll('.copybtn[data-copy]');
+  Array.prototype.forEach.call(btns, function(b){
+    b.addEventListener('click', function(){
+      var id = b.getAttribute('data-copy');
+      var el = document.getElementById(id);
+      if (el) copyText(el.textContent.trim(), b, id);
+    });
+  });
+
+  var form = document.getElementById('enquiry');
+  var result = document.getElementById('result');
+  var resultMsg = document.getElementById('result-msg');
+  var resultText = document.getElementById('result-text');
+  var copyMsgBtn = document.getElementById('copy-msg');
+  var submitBtn = document.getElementById('submit-btn');
+
+  function plainText(d){
+    return [
+      'New enquiry — Ops Mechanic', '',
+      'Name:      ' + (d.get('name') || ''),
+      'Business:  ' + (d.get('business') || '—'),
+      'Email:     ' + (d.get('email') || ''),
+      'Phone:     ' + (d.get('phone') || '—'),
+      'Outlets:   ' + (d.get('outlets') || ''),
+      'Needs:     ' + (d.get('need') || ''),
+      '', 'Details:', (d.get('message') || '—')
+    ].join('\n');
+  }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+
+    var nameEl = document.getElementById('f-name');
+    var emailEl = document.getElementById('f-email');
+    if (!nameEl.value.trim()) { nameEl.focus(); return; }
+    if (!emailEl.value.trim() || emailEl.value.indexOf('@') < 1) { emailEl.focus(); return; }
+
+    var d = new FormData(form);
+    var payload = {};
+    d.forEach(function(v, k){ payload[k] = v; });
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    result.hidden = true;
+    result.classList.remove('err');
+    resultText.hidden = true;
+    copyMsgBtn.hidden = true;
+
+    fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      if (!res.ok) throw new Error('status ' + res.status);
+      return res.json().catch(function(){ return {}; });
+    }).then(function(){
+      resultMsg.innerHTML = '<strong>Thanks — enquiry received.</strong> I\'ll reply within one working day.';
+      result.hidden = false;
+      form.reset();
+    }).catch(function(){
+      result.classList.add('err');
+      resultMsg.innerHTML = '<strong>Couldn\'t send automatically.</strong> Copy the message below and email it to <code>hello@opsmechanic.com</code>.';
+      resultText.textContent = plainText(d);
+      resultText.hidden = false;
+      copyMsgBtn.hidden = false;
+      result.hidden = false;
+    }).then(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send enquiry';
+      result.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
+  });
+
+  copyMsgBtn.addEventListener('click', function(){
+    copyText(resultText.textContent, copyMsgBtn, 'result-text');
+  });
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('/sw.js').catch(function(){ /* offline support is optional */ });
+    });
+  }
+})();
+</script>
+</body>
+</html>
