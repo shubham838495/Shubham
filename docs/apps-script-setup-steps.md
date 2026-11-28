@@ -91,12 +91,12 @@ This is important for security! Your email/password will be encrypted.
 
 ### Property 1:
 - **Key:** `PETPOOJA_EMAIL`
-- **Value:** `jain.shubhamjain98@gmail.com`
+- **Value:** _your PetPooja login email_
 - Click **Add property**
 
 ### Property 2:
 - **Key:** `PETPOOJA_PASSWORD`
-- **Value:** `Shubham@8384954929`
+- **Value:** _your PetPooja password_
 - Click **Add property**
 
 ### Property 3:
@@ -106,7 +106,7 @@ This is important for security! Your email/password will be encrypted.
 
 ### Property 4:
 - **Key:** `NOTIFICATION_EMAIL`
-- **Value:** `jain.shubhamjain98@gmail.com`
+- **Value:** _the email that should receive failure alerts_
 - Click **Add property**
 
 ✅ Your credentials are now securely stored and encrypted!
@@ -169,7 +169,7 @@ This makes it run automatically every day at 9 AM!
 - Check "Logs" sheet to confirm it ran
 
 ### Check 3 (If something fails):
-- Email will be sent to `jain.shubhamjain98@gmail.com`
+- Email will be sent to the address in `NOTIFICATION_EMAIL`
 - Check "Logs" sheet for error details
 
 ---

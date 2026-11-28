@@ -10,7 +10,7 @@
 
 1. Open Google Cloud Console on your phone:
    - Go to: https://console.cloud.google.com/
-   - Sign in with: jain.shubhamjain98@gmail.com
+   - Sign in with the Google account that owns the target Sheet
 
 2. Click the **hamburger menu** (≡) top left
 3. Go to **IAM & Admin** → **Service Accounts**

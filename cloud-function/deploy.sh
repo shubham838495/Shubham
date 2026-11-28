@@ -10,7 +10,17 @@ PROJECT_ID="530982326426"
 FUNCTION_NAME="petpooja-daily-report"
 REGION="us-central1"
 RUNTIME="python311"
-SHEET_ID="11_U8uBU2A6nbfCeBLsZaxi_AbLWA1TXkWVTMVWLzbnI"
+
+# Secrets and per-deployment settings are read from your shell environment.
+# Export them before running this script; never commit them to this repo:
+#   export SHEET_ID='...'
+#   export PETPOOJA_EMAIL='...'
+#   export PETPOOJA_PASSWORD='...'
+#   export NOTIFICATION_EMAIL='...'
+: "${SHEET_ID:?Set SHEET_ID before running this script}"
+: "${PETPOOJA_EMAIL:?Set PETPOOJA_EMAIL before running this script}"
+: "${PETPOOJA_PASSWORD:?Set PETPOOJA_PASSWORD before running this script}"
+NOTIFICATION_EMAIL="${NOTIFICATION_EMAIL:-}"
 PUBSUB_TOPIC="petpooja-trigger"
 SCHEDULER_JOB="petpooja-daily-9am"
 
@@ -64,6 +74,7 @@ gcloud functions deploy $FUNCTION_NAME \
   --memory 256MB \
   --allow-unauthenticated \
   --source . \
+  --set-env-vars "SHEET_ID=${SHEET_ID},PETPOOJA_EMAIL=${PETPOOJA_EMAIL},PETPOOJA_PASSWORD=${PETPOOJA_PASSWORD},NOTIFICATION_EMAIL=${NOTIFICATION_EMAIL}" \
   --quiet
 echo "✓ Cloud Function deployed successfully"
 echo ""
