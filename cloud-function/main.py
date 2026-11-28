@@ -6,23 +6,36 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 import logging
 import json
+import os
 import base64
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
+def _required_env(name):
+    """Read a required setting from the environment. Fail loudly if absent."""
+    value = os.environ.get(name)
+    if not value:
+        raise RuntimeError(
+            'Missing required environment variable: %s. Set it on the Cloud '
+            'Function (see docs/cloud-function-deploy.md). Never hardcode '
+            'credentials in this file - this repository is public.' % name
+        )
+    return value
+
 # Configuration
 PETPOOJA_LOGIN_URL = 'https://billing.petpooja.com/users/login'
 PETPOOJA_REPORT_URL = 'https://billing.petpooja.com/custom_reports/view_report/9'
-SHEET_ID = '11_U8uBU2A6nbfCeBLsZaxi_AbLWA1TXkWVTMVWLzbnI'
+SHEET_ID = _required_env('SHEET_ID')
 REPORT_SHEET_NAME = 'Reports'
 LOGS_SHEET_NAME = 'Logs'
 
-# Credentials (from environment variables)
-PETPOOJA_EMAIL = 'jain.shubhamjain98@gmail.com'
-PETPOOJA_PASSWORD = 'Shubham@8384954929'
-NOTIFICATION_EMAIL = 'jain.shubhamjain98@gmail.com'
+# Credentials and settings come from the environment only.
+PETPOOJA_EMAIL = _required_env('PETPOOJA_EMAIL')
+PETPOOJA_PASSWORD = _required_env('PETPOOJA_PASSWORD')
+NOTIFICATION_EMAIL = os.environ.get('NOTIFICATION_EMAIL', '')
 
 
 def get_yesterday_date():

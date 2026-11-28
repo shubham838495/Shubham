@@ -28,7 +28,7 @@ You'll open Google Cloud Shell (browser terminal) and run a script that:
    https://cloud.google.com/console/cloudshell
    ```
 
-2. Sign in with: `jain.shubhamjain98@gmail.com`
+2. Sign in with the Google account that owns the target Sheet
 
 3. You should see a terminal with a prompt like:
    ```

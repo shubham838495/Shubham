@@ -60,10 +60,10 @@ Copy the contents from this repository's files into your Apps Script editor:
 1. In Apps Script editor, click **Project Settings** (gear icon on left)
 2. Scroll to **Script Properties**
 3. Add these properties:
-   - **Key**: `PETPOOJA_EMAIL` | **Value**: `jain.shubhamjain98@gmail.com`
-   - **Key**: `PETPOOJA_PASSWORD` | **Value**: `Shubham@8384954929`
+   - **Key**: `PETPOOJA_EMAIL` | **Value**: _your PetPooja login email_
+   - **Key**: `PETPOOJA_PASSWORD` | **Value**: _your PetPooja password_
    - **Key**: `SHEET_ID` | **Value**: [Paste the SHEET_ID you copied earlier]
-   - **Key**: `NOTIFICATION_EMAIL` | **Value**: `jain.shubhamjain98@gmail.com`
+   - **Key**: `NOTIFICATION_EMAIL` | **Value**: _the email that should receive failure alerts_
 
 ⚠️ **Security Note**: These credentials are encrypted at rest in Google's servers. They are NOT stored in your code or visible to others who view the script.
 
